@@ -1,0 +1,316 @@
+# Environments snippets
+snippet beg "Create new environment"
+\begin{$1}
+    $2
+\end{$1}
+$3
+endsnippet
+
+snippet eqn "Create equation environment with label"
+\begin{equation}\label{$2}
+    $1
+\end{equation}
+$3
+endsnippet
+
+snippet eq "Create equation environment"
+\begin{equation*}
+    $1
+\end{equation*}
+$2
+endsnippet
+
+snippet ali "Create an aligned environment"
+\begin{align*}
+    $1
+\end{align*}
+$2
+endsnippet
+
+snippet enum "Create an enumerate environment" 
+\begin{enumerate}
+    \item $1
+\end{enumerate}
+endsnippet
+
+snippet thr "Create a theorem with label" b
+\begin{theorem}\label{thr:$2}
+    $1
+\end{theorem}
+$3
+endsnippet
+
+snippet prop "Create a Proposition with label" b
+\begin{proposition}\label{prop:$2}
+    $1
+\end{proposition}
+$3
+endsnippet
+
+snippet lem "Create a Lemma with label" b
+\begin{lemma}\label{lemma:$2}
+    $1
+\end{lemma}
+$3
+endsnippet
+
+snippet cor "Create a Corollary with label" b
+\begin{corollary}\label{cor:$2}
+    $1
+\end{corollary}
+$3
+endsnippet
+
+snippet proof "Create a proof environment" b
+\begin{proof}
+    $1
+\end{proof}
+$2
+endsnippet
+
+snippet cha "Chapter" b
+\chapter{$1}\label{cha:$2}
+$3
+endsnippet
+
+snippet sec "Section" b
+\section{$1}\label{sec:$2}
+$3
+endsnippet 
+
+snippet sub "Subsection" b
+\subsection{$1}\label{sbs:$2}
+$3
+endsnippet 
+
+# Subscript, superscripts and fractions
+snippet __ "subscript" iA
+_{$1}$2
+endsnippet
+
+snippet ^^ "superscript" iA
+^{$1}$2
+endsnippet
+
+snippet // "fraction" iA
+\frac{$1}{$2}$3
+endsnippet
+
+snippet {{ "open well-sized curly brackets {" iA
+\left\{$1\right\}$2
+endsnippet
+
+snippet [[ "open well-sized square brackets" iA
+\left[$1\right]$2
+endsnippet
+
+snippet (( "open well-sized brackets" iA
+\left($1\right)$2
+endsnippet
+
+# hats
+priority 10
+snippet "bar" "bar" ri
+\overline{$1}$0
+endsnippet
+ 
+# Todo: seems to be a bit slow
+#priority 100
+#snippet "([a-zA-Z])bar" "bar" ri
+#\overline{`!p snip.rv=match.group(1)`}
+#endsnippet
+
+priority 10
+snippet "hat" "hat" ri
+\widehat{$1}$0
+endsnippet
+
+#priority 100
+#snippet "([a-zA-Z])hat" "hat" ri
+#\widehat{`!p snip.rv=match.group(1)`}
+#endsnippet
+#
+priority 10
+snippet "tilde" "tilde" ri
+\widetilde{$1}$0
+endsnippet
+
+#priority 100
+#snippet "([a-zA-Z])tilde" "tilde" ri
+#\widetilde{`!p snip.rv=match.group(1)`}
+#endsnippet
+#
+# Series, limit and integrals
+snippet "int" "integral" ri
+\int_{$1}^{$2} $3 \, \textrm{d} $4
+endsnippet
+
+snippet "mint" "measure like integral" ri
+\int_{$1} $2 \, \textrm{d} $3
+endsnippet
+
+snippet "lim" "limit" ri
+\lim_{$1 \to $2} $3
+endsnippet
+
+snippet "sum" "sum" ri 
+\sum_{$1=$2}^{$3} $4
+endsnippet
+
+snippet "rseries" "Taylor series" ri
+\sum_{$1=0}^{+\infty} $2
+endsnippet
+
+snippet "cseries" "Laurant series" ri
+\sum_{$1=-\infty}^{+\infty} $2
+endsnippet
+
+snippet "pdv" "partial derivative" ri
+\pdv{$1}{$2} $3
+endsnippet
+
+snippet "odv" "ordinary derivative" ri
+\odv{$1}{$2} $3
+endsnippet
+
+# Functions
+snippet "rfun" "Real function" ri
+$1 \colon \mathbb{R} \to \mathbb{R} $0
+endsnippet
+
+snippet "cfun" "Complex function" ri
+$1 \colon \mathbb{C} \to \mathbb{C} $0
+endsnippet
+
+# Greek letters and other symbols 
+snippet aa "\alpha" i
+\alpha
+endsnippet
+
+snippet bb "\beta" i
+\beta
+endsnippet
+
+snippet gg "\gamma" i
+\gamma
+endsnippet
+
+snippet GG "\Gamma" i
+\Gamma
+endsnippet
+
+snippet dd "\delta" i 
+\delta
+endsnippet
+
+snippet DD "\Delta" i
+\Delta
+endsnippet
+
+snippet ee "\varepsilon" i
+\varepsilon
+endsnippet
+
+snippet zz "\zeta" i
+\zeta
+endsnippet
+
+snippet hh "\eta" i
+\eta
+endsnippet
+
+snippet qq "\theta" i
+\theta
+endsnippet
+
+snippet QQ "\Theta" i
+\Theta
+endsnippet
+
+snippet ii "\iota" i
+\iota
+endsnippet
+
+snippet kk "\kappa" i
+\kappa
+endsnippet
+
+snippet ll "\lambda" i
+\lambda
+endsnippet
+
+snippet LL "\Lambda" i
+\Lambda
+endsnippet
+
+snippet mm "\mu" i
+\mu
+endsnippet
+
+snippet nn "\nu" i
+\nu
+endsnippet
+
+snippet pp "\pi" i
+\pi
+endsnippet
+
+snippet PP "\Pi" i
+\Pi
+endsnippet
+
+snippet rr "\rho" i
+\rho
+endsnippet
+
+snippet ss "\sigma" i
+\sigma
+endsnippet
+
+snippet SS "\Sigma" i
+\Sigma
+endsnippet
+
+snippet tt "\tau" i
+\tau
+endsnippet
+
+snippet ff "\varphi" i
+\varphi
+endsnippet
+
+snippet FF "\Phi" i
+\Phi
+endsnippet
+
+snippet ww "\omega" i
+\omega
+endsnippet
+
+snippet WW "\Omega" i
+\Omega
+endsnippet
+
+snippet xx "\chi" i
+\chi
+endsnippet
+
+snippet inf "\infty" i
+\infty
+endsnippet
+
+snippet real "\mathbb{R}" i
+\mathbb{R}
+endsnippet
+
+snippet cmpl "\mathbb{C}" i
+\mathbb{C}
+endsnippet
+
+snippet nats "\mathbb{N}" i
+\mathbb{N}
+endsnippet
+
+snippet intg "\mathbb{Z}" i
+\mathbb{Z}
+endsnippet
