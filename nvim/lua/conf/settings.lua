@@ -1,48 +1,55 @@
 -- 
--- VIM OPTIONS
+-- VIM oIONS
 --
-vim.opt.linebreak = true
-vim.opt.textwidth = 70
-vim.opt.showmatch = true
-vim.opt.showcmd = true
-vim.opt.spell = true
-vim.opt.wildmenu = true
-vim.opt.lazyredraw = true
-vim.opt.cursorline = true
-vim.opt.ttyfast = true
+vim.o.linebreak = true
+vim.o.textwidth = 70
+vim.o.showmatch = true
+vim.o.showcmd = true
+vim.o.spell = true
+vim.o.wildmenu = true
+vim.o.lazyredraw = true
+vim.o.cursorline = true
+vim.o.ttyfast = true
 -- No backup file
-vim.opt.backup = false
+vim.o.backup = false
 -- Allow neovim to access the system clipboard
-vim.opt.clipboard = "unnamedplus"
+vim.o.clipboard = "unnamedplus"
 -- Highlight last search
-vim.opt.hlsearch = true
+vim.o.hlsearch = true
 -- Do case insensitive search
-vim.opt.ignorecase = true
-
+vim.o.ignorecase = true
+vim.o.smartcase = true
 -- Indentation and tabs
-vim.opt.autoindent = true
-vim.opt.shiftwidth = 4
-vim.opt.smartindent = true
-vim.opt.smarttab = true
-vim.opt.softtabstop = 4
-vim.opt.expandtab = true
+vim.o.autoindent = true
+vim.o.shiftwidth = 4
+vim.o.smartindent = true
+vim.o.smarttab = true
+vim.o.softtabstop = 4
+vim.o.expandtab = true
 
 -- Fold
-vim.opt.foldenable = true
-vim.opt.foldlevelstart = 10
-vim.opt.foldnestmax = 5
-vim.opt.foldmethod = "indent"
+vim.o.foldenable = false
+vim.o.foldlevelstart = 10
+vim.o.foldnestmax = 5
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Remove bells
-vim.opt.belloff = "all"
+vim.o.belloff = "all"
 
 -- History and other stuff
-vim.opt.ruler = true
-vim.opt.undolevels = 400
+vim.o.ruler = true
+vim.o.undolevels = 400
 vim.opt.backspace={"indent", "eol", "start"}
 
+-- Filetype
+--vim.g.did_load_filetypes = 1
+-- Use filetype.lua and don't fallback to filetype.vim
+vim.g.do_filetype_lua = 1
+vim.g.did_load_filetype = 0
+
 -- Color scheme
-vim.opt.termguicolors = true
+vim.o.termguicolors = true
 vim.g.tokyonight_style = "night"
 vim.g.tokyonight_italic_functions = true
 vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
@@ -56,7 +63,7 @@ autosave.setup(
     {
         enabled = true,
         execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
-        events = {"InsertLeave", "TextChanged"},
+        events = {"InsertLeave","TextChanged"},
         conditions = {
             exists = true,
             filename_is_not = {},
@@ -69,3 +76,15 @@ autosave.setup(
         debounce_delay = 135
     }
 )
+vim.g.autosave_state = true
+
+-- Treesitter
+require'nvim-treesitter.configs'.setup {
+    highlight = { 
+        enable = true, 
+        additional_vim_regex_highlighting = false
+    },
+    indent= {
+        enable = true
+    }    
+}

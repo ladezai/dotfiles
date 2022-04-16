@@ -1,30 +1,31 @@
+# packages
+snippet ams "Import all required amsmath packages" b 
+\usepackage{amsmath,amssymb,mathtools,amsthm}
+endsnippet
+
 # Environments snippets
 snippet beg "Create new environment"
 \begin{$1}
     $2
 \end{$1}
-$3
 endsnippet
 
 snippet eqn "Create equation environment with label"
 \begin{equation}\label{$2}
     $1
 \end{equation}
-$3
 endsnippet
 
 snippet eq "Create equation environment"
 \begin{equation*}
     $1
 \end{equation*}
-$2
 endsnippet
 
 snippet ali "Create an aligned environment"
 \begin{align*}
     $1
 \end{align*}
-$2
 endsnippet
 
 snippet enum "Create an enumerate environment" 
@@ -37,53 +38,65 @@ snippet thr "Create a theorem with label" b
 \begin{theorem}\label{thr:$2}
     $1
 \end{theorem}
-$3
 endsnippet
 
 snippet prop "Create a Proposition with label" b
 \begin{proposition}\label{prop:$2}
     $1
 \end{proposition}
-$3
 endsnippet
 
 snippet lem "Create a Lemma with label" b
 \begin{lemma}\label{lemma:$2}
     $1
 \end{lemma}
-$3
 endsnippet
 
 snippet cor "Create a Corollary with label" b
 \begin{corollary}\label{cor:$2}
     $1
 \end{corollary}
-$3
+endsnippet
+
+snippet def "Create a Definition with label" b
+\begin{definition}\label{def:$2}
+    $1
+\end{definition}
+endsnippet
+
+snippet rmk "Create a Remark with label" b
+\begin{remark}\label{rmk:$2}
+    $1
+\end{remark}
 endsnippet
 
 snippet proof "Create a proof environment" b
 \begin{proof}
     $1
 \end{proof}
-$2
 endsnippet
 
 snippet cha "Chapter" b
 \chapter{$1}\label{cha:$2}
-$3
 endsnippet
 
 snippet sec "Section" b
 \section{$1}\label{sec:$2}
-$3
 endsnippet 
 
 snippet sub "Subsection" b
 \subsection{$1}\label{sbs:$2}
-$3
 endsnippet 
 
 # Subscript, superscripts and fractions
+snippet ;im "Insert inline math" iA
+$$1$
+endsnippet
+
+snippet ... "dots" iA
+\dots
+endsnippet 
+
 snippet __ "subscript" iA
 _{$1}$2
 endsnippet
@@ -97,7 +110,7 @@ snippet // "fraction" iA
 endsnippet
 
 snippet {{ "open well-sized curly brackets {" iA
-\left\{$1\right\}$2
+\left\\{$1\right\\}$2
 endsnippet
 
 snippet [[ "open well-sized square brackets" iA
@@ -108,38 +121,41 @@ snippet (( "open well-sized brackets" iA
 \left($1\right)$2
 endsnippet
 
+snippet <<< "open well-size angled brackets" iA
+\left\langle$1\right\rangle$2
+endsnippet
+
 # hats
 priority 10
 snippet "bar" "bar" ri
 \overline{$1}$0
 endsnippet
  
-# Todo: seems to be a bit slow
-#priority 100
-#snippet "([a-zA-Z])bar" "bar" ri
-#\overline{`!p snip.rv=match.group(1)`}
-#endsnippet
+priority 100
+snippet "([a-zA-Z])bar" "bar" ri
+\overline{`!p snip.rv=match.group(1)`}
+endsnippet
 
 priority 10
 snippet "hat" "hat" ri
 \widehat{$1}$0
 endsnippet
 
-#priority 100
-#snippet "([a-zA-Z])hat" "hat" ri
-#\widehat{`!p snip.rv=match.group(1)`}
-#endsnippet
-#
+priority 100
+snippet "([a-zA-Z])hat" "hat" ri
+\widehat{`!p snip.rv=match.group(1)`}
+endsnippet
+
 priority 10
 snippet "tilde" "tilde" ri
 \widetilde{$1}$0
 endsnippet
 
-#priority 100
-#snippet "([a-zA-Z])tilde" "tilde" ri
-#\widetilde{`!p snip.rv=match.group(1)`}
-#endsnippet
-#
+priority 100
+snippet "([a-zA-Z])tilde" "tilde" ri
+\widetilde{`!p snip.rv=match.group(1)`}
+endsnippet
+
 # Series, limit and integrals
 snippet "int" "integral" ri
 \int_{$1}^{$2} $3 \, \textrm{d} $4
@@ -183,115 +199,115 @@ $1 \colon \mathbb{C} \to \mathbb{C} $0
 endsnippet
 
 # Greek letters and other symbols 
-snippet aa "\alpha" i
+snippet ;aa "\alpha" iA
 \alpha
 endsnippet
 
-snippet bb "\beta" i
+snippet ;bb "\beta" iA
 \beta
 endsnippet
 
-snippet gg "\gamma" i
+snippet ;gg "\gamma" iA
 \gamma
 endsnippet
 
-snippet GG "\Gamma" i
+snippet ;GG "\Gamma" iA
 \Gamma
 endsnippet
 
-snippet dd "\delta" i 
+snippet ;dd "\delta" iA
 \delta
 endsnippet
 
-snippet DD "\Delta" i
+snippet ;DD "\Delta" iA
 \Delta
 endsnippet
 
-snippet ee "\varepsilon" i
+snippet ;ee "\varepsilon" iA
 \varepsilon
 endsnippet
 
-snippet zz "\zeta" i
+snippet ;zz "\zeta" iA
 \zeta
 endsnippet
 
-snippet hh "\eta" i
+snippet ;hh "\eta" iA
 \eta
 endsnippet
 
-snippet qq "\theta" i
+snippet ;qq "\theta" iA
 \theta
 endsnippet
 
-snippet QQ "\Theta" i
+snippet ;QQ "\Theta" iA
 \Theta
 endsnippet
 
-snippet ii "\iota" i
+snippet ;ii "\iota" iA
 \iota
 endsnippet
 
-snippet kk "\kappa" i
+snippet ;kk "\kappa" iA
 \kappa
 endsnippet
 
-snippet ll "\lambda" i
+snippet ;ll "\lambda" iA
 \lambda
 endsnippet
 
-snippet LL "\Lambda" i
+snippet ;LL "\Lambda" iA
 \Lambda
 endsnippet
 
-snippet mm "\mu" i
+snippet ;mm "\mu" iA
 \mu
 endsnippet
 
-snippet nn "\nu" i
+snippet ;nn "\nu" iA
 \nu
 endsnippet
 
-snippet pp "\pi" i
+snippet ;pp "\pi" iA
 \pi
 endsnippet
 
-snippet PP "\Pi" i
+snippet ;PP "\Pi" iA
 \Pi
 endsnippet
 
-snippet rr "\rho" i
+snippet ;rr "\rho" iA
 \rho
 endsnippet
 
-snippet ss "\sigma" i
+snippet ;ss "\sigma" iA
 \sigma
 endsnippet
 
-snippet SS "\Sigma" i
+snippet ;SS "\Sigma" iA
 \Sigma
 endsnippet
 
-snippet tt "\tau" i
+snippet ;tt "\tau" iA
 \tau
 endsnippet
 
-snippet ff "\varphi" i
+snippet ;ff "\varphi" iA
 \varphi
 endsnippet
 
-snippet FF "\Phi" i
+snippet ;FF "\Phi" iA
 \Phi
 endsnippet
 
-snippet ww "\omega" i
+snippet ;ww "\omega" iA
 \omega
 endsnippet
 
-snippet WW "\Omega" i
+snippet ;WW "\Omega" iA
 \Omega
 endsnippet
 
-snippet xx "\chi" i
+snippet ;xx "\chi" iA
 \chi
 endsnippet
 
@@ -313,4 +329,8 @@ endsnippet
 
 snippet intg "\mathbb{Z}" i
 \mathbb{Z}
+endsnippet
+
+snippet rat "\mathbb{Q}" i
+\mathbb{Q}
 endsnippet

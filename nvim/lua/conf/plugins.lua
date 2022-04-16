@@ -44,9 +44,11 @@ packer.init {
 return packer.startup(function(use)
     -- My plugins here
     use "wbthomason/packer.nvim" -- Have packer manage itself
+    -- Autosave
     use "Pocco81/AutoSave.nvim"
     -- Autocomplete snippets...
     use "SirVer/ultisnips"
+    
     -- Jump and stuff
     use {
         "phaazon/hop.nvim",
@@ -58,10 +60,10 @@ return packer.startup(function(use)
     -- Telescope
     use "nvim-lua/plenary.nvim"
     use "nvim-telescope/telescope.nvim"
-    
     -- Colorscheme
     use "folke/tokyonight.nvim"
-    
+    -- Treesitter
+    use {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"}
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if PACKER_BOOTSTRAP then

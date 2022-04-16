@@ -3,7 +3,7 @@
 --
 local opts   = {silent=true,noremap=true}
 local keymap = vim.api.nvim_set_keymap
-local delkeymap = vim.api.nvim_del_keymap
+--local delkeymap = vim.api.nvim_del_keymap
 
 keymap("",",","<Nop>",opts)
 vim.g.mapleader = ","
@@ -21,20 +21,21 @@ keymap("n", "B", "^",opts)
 keymap("n", "^", "<Nop>", opts)
 -- Remove highlight after search.
 keymap("n", "<leader><space>", ":noh <CR>", opts)
+-- Unfold/folding with space bar 
+keymap("n", "<space>", "za", opts)
 
--- Better navigation between tabs
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+-- Better navigation between buffers
+keymap("n", "<C-j>", ":bnext <CR>", opts)
+keymap("n", "<C-k>", ":bprevious <CR>", opts)
 
 -- Insert mode
 -- Remap esc
 keymap("i", "jk", "<ESC>", opts)
+keymap("i", "<ESC>", "<NOP>", opts)
+
 -- Autospell corrector, basically jumps at the previous spell
 -- error, correct with the first result.
 keymap("i", "<C-l>", "<c-g>u<Esc>[s1z=`]a<c-g>u",opts)
---- delkeymap("<ESC>")
 
 -- Visual mode
 -- Preserves selection when indenting
@@ -48,14 +49,12 @@ vim.g.UltiSnipsJumpBackwardTrigger="<S-Tab>"
 vim.g.UltiSnipsSnippetDirectories={"UltiSnips","my_snippets"}
 
 -- Keymaps for hop
-keymap('n', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
-keymap('n', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
-keymap('n', 't', "<cmd>lua require'hop'.hint_lines({ current_line_only = false, inclusive_jump = true })<cr>", {})
-keymap('n', 'w', "<cmd>lua require'hop'.hint_words({ current_line_only = false, inclusive_jump = true })<cr>", {})
+keymap('n', 'f', "<cmd>lua require'hop'.hint_char1({ current_line_only = true })<cr>", {})
+keymap('n', 't', "<cmd>lua require'hop'.hint_words({ current_line_only = false, inclusive_jump = true })<cr>", {})
 
 -- Keymap for telescope
-keymap('n','<leader>f', "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({preview=false}))<CR>", opts)
-keymap('n','<leader>t', "<cmd>lua require'telescope.builtin'.live_grep(require('telescope.themes').get_dropdown())<CR>", opts)
+keymap('n','<leader>t', "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({preview=false}))<CR>", opts)
+keymap('n','<leader>g', "<cmd>lua require'telescope.builtin'.live_grep(require('telescope.themes').get_dropdown())<CR>", opts)
 
 
 -- Keymap to compile LaTeX file
@@ -66,7 +65,13 @@ keymap('n','<leader>t', "<cmd>lua require'telescope.builtin'.live_grep(require('
 --local code_pilers = {
 --    "file-extension": "command"
 --}
-keymap("n", "<C-x>", ":!pdflatex -output-directory '%:p:h' '%:p'<CR>", opts)
+keymap("n", "<leader>c", ":!pdflatex -output-directory '%:p:h' '%:p'<CR>", opts)
 
 -- Automatic highlight yanked lines
-vim.cmd[[au TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=450})]]
+vim.api.nvim_create_autocmd("TextYankPost", {
+    pattern = "*",
+    callback = function()
+        vim.highlight.on_yank({higroup="IncSearch", timeout=450})
+    end,
+    desc = "Highlight yanked lines"
+})
