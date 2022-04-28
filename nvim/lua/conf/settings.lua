@@ -43,10 +43,11 @@ vim.o.undolevels = 400
 vim.opt.backspace={"indent", "eol", "start"}
 
 -- Filetype
---vim.g.did_load_filetypes = 1
 -- Use filetype.lua and don't fallback to filetype.vim
 vim.g.do_filetype_lua = 1
-vim.g.did_load_filetype = 0
+vim.g.did_load_filetypes = 0
+-- to be sure .tex files are recognized as latex...
+vim.g.tex_flavor = "latex"
 
 -- Color scheme
 vim.o.termguicolors = true
@@ -83,8 +84,5 @@ require'nvim-treesitter.configs'.setup {
     highlight = { 
         enable = true, 
         additional_vim_regex_highlighting = false
-    },
-    indent= {
-        enable = true
-    }    
+    }
 }

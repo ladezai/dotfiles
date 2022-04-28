@@ -19,6 +19,9 @@ keymap("n","$", "<Nop>",opts)
 -- Go to the beginning of a line
 keymap("n", "B", "^",opts)
 keymap("n", "^", "<Nop>", opts)
+-- When change upper to lower or vice-versa, 
+-- but don't move the cursor
+keymap("n", "~", "~h", opts)
 -- Remove highlight after search.
 keymap("n", "<leader><space>", ":noh <CR>", opts)
 -- Unfold/folding with space bar 

@@ -1,96 +1,128 @@
-# packages
-snippet ams "Import all required amsmath packages" b 
-\usepackage{amsmath,amssymb,mathtools,amsthm}
-endsnippet
+# template article
+snippet ;article "Create an exercise sheet for solutions" b
+\documentclass[11pt, a4paper]{article}
+
+% most used packages
+\usepackage{amsmath,amssymb,mathtools,amsthm,derivative}
+
+% theorem declarations
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+% Title, author and date.
+\title{$1}
+\author{$2}
+\date{$3}
+
+\begin{document}
+    \maketitle
+    $0
+\end{document}
+endsnippet 
 
 # Environments snippets
 snippet beg "Create new environment"
 \begin{$1}
-    $2
+    $0
 \end{$1}
 endsnippet
 
 snippet eqn "Create equation environment with label"
-\begin{equation}\label{$2}
+\begin{equation}\label{$0}
     $1
 \end{equation}
 endsnippet
 
 snippet eq "Create equation environment"
 \begin{equation*}
-    $1
+    $0
 \end{equation*}
 endsnippet
 
 snippet ali "Create an aligned environment"
 \begin{align*}
-    $1
+    $0
 \end{align*}
 endsnippet
 
 snippet enum "Create an enumerate environment" 
 \begin{enumerate}
-    \item $1
+    \item $0
 \end{enumerate}
 endsnippet
 
 snippet thr "Create a theorem with label" b
-\begin{theorem}\label{thr:$2}
+\begin{theorem}\label{thr:$0}
     $1
 \end{theorem}
 endsnippet
 
 snippet prop "Create a Proposition with label" b
-\begin{proposition}\label{prop:$2}
+\begin{proposition}\label{prop:$0}
     $1
 \end{proposition}
 endsnippet
 
 snippet lem "Create a Lemma with label" b
-\begin{lemma}\label{lemma:$2}
+\begin{lemma}\label{lemma:$0}
     $1
 \end{lemma}
 endsnippet
 
 snippet cor "Create a Corollary with label" b
-\begin{corollary}\label{cor:$2}
+\begin{corollary}\label{cor:$0}
     $1
 \end{corollary}
 endsnippet
 
 snippet def "Create a Definition with label" b
-\begin{definition}\label{def:$2}
+\begin{definition}\label{def:$0}
     $1
 \end{definition}
 endsnippet
 
 snippet rmk "Create a Remark with label" b
-\begin{remark}\label{rmk:$2}
+\begin{remark}\label{rmk:$0}
     $1
 \end{remark}
 endsnippet
 
+snippet ex "Create an example" b
+\begin{example}
+    $0
+\end{example}
+endsnippet
+
 snippet proof "Create a proof environment" b
 \begin{proof}
-    $1
+    $0
 \end{proof}
 endsnippet
 
 snippet cha "Chapter" b
-\chapter{$1}\label{cha:$2}
+\chapter{$0}\label{cha:$0}
 endsnippet
 
 snippet sec "Section" b
-\section{$1}\label{sec:$2}
+\section{$0}\label{sec:$0}
 endsnippet 
 
 snippet sub "Subsection" b
-\subsection{$1}\label{sbs:$2}
+\subsection{$0}\label{sbs:$0}
 endsnippet 
 
 # Subscript, superscripts and fractions
 snippet ;im "Insert inline math" iA
-$$1$
+$$0$
 endsnippet
 
 snippet ... "dots" iA
@@ -98,31 +130,31 @@ snippet ... "dots" iA
 endsnippet 
 
 snippet __ "subscript" iA
-_{$1}$2
+_{$1}$0
 endsnippet
 
 snippet ^^ "superscript" iA
-^{$1}$2
+^{$1}$0
 endsnippet
 
 snippet // "fraction" iA
-\frac{$1}{$2}$3
+\frac{$1}{$2}$0
 endsnippet
 
 snippet {{ "open well-sized curly brackets {" iA
-\left\\{$1\right\\}$2
+\left\\{$1\right\\}$0
 endsnippet
 
 snippet [[ "open well-sized square brackets" iA
-\left[$1\right]$2
+\left[$1\right]$0
 endsnippet
 
 snippet (( "open well-sized brackets" iA
-\left($1\right)$2
+\left($1\right)$0
 endsnippet
 
 snippet <<< "open well-size angled brackets" iA
-\left\langle$1\right\rangle$2
+\left\langle$1\right\rangle$0
 endsnippet
 
 # hats
@@ -158,156 +190,147 @@ endsnippet
 
 # Series, limit and integrals
 snippet "int" "integral" ri
-\int_{$1}^{$2} $3 \, \textrm{d} $4
+\int_{$1}^{$2} $3 \, \textrm{d} $0
 endsnippet
 
 snippet "mint" "measure like integral" ri
-\int_{$1} $2 \, \textrm{d} $3
+\int_{$1} $2 \, \textrm{d} $0
 endsnippet
 
 snippet "lim" "limit" ri
-\lim_{$1 \to $2} $3
+\lim_{$1 \to $2} $0
 endsnippet
 
 snippet "sum" "sum" ri 
-\sum_{$1=$2}^{$3} $4
+\sum_{$1=$2}^{$3} $0
 endsnippet
 
 snippet "rseries" "Taylor series" ri
-\sum_{$1=0}^{+\infty} $2
+\sum_{$1=0}^{+\infty} $0
 endsnippet
 
 snippet "cseries" "Laurant series" ri
-\sum_{$1=-\infty}^{+\infty} $2
+\sum_{$1=-\infty}^{+\infty} $0
 endsnippet
 
 snippet "pdv" "partial derivative" ri
-\pdv{$1}{$2} $3
+\pdv{$1}{$2} $0
 endsnippet
 
 snippet "odv" "ordinary derivative" ri
-\odv{$1}{$2} $3
-endsnippet
-
-# Functions
-snippet "rfun" "Real function" ri
-$1 \colon \mathbb{R} \to \mathbb{R} $0
-endsnippet
-
-snippet "cfun" "Complex function" ri
-$1 \colon \mathbb{C} \to \mathbb{C} $0
+\odv{$1}{$2} $0
 endsnippet
 
 # Greek letters and other symbols 
-snippet ;aa "\alpha" iA
+snippet ;a "\alpha" iA
 \alpha
 endsnippet
 
-snippet ;bb "\beta" iA
+snippet ;b "\beta" iA
 \beta
 endsnippet
 
-snippet ;gg "\gamma" iA
+snippet ;g "\gamma" iA
 \gamma
 endsnippet
 
-snippet ;GG "\Gamma" iA
+snippet ;G "\Gamma" iA
 \Gamma
 endsnippet
 
-snippet ;dd "\delta" iA
+snippet ;d "\delta" iA
 \delta
 endsnippet
 
-snippet ;DD "\Delta" iA
+snippet ;D "\Delta" iA
 \Delta
 endsnippet
 
-snippet ;ee "\varepsilon" iA
+snippet ;e "\varepsilon" iA
 \varepsilon
 endsnippet
 
-snippet ;zz "\zeta" iA
+snippet ;z "\zeta" iA
 \zeta
 endsnippet
 
-snippet ;hh "\eta" iA
+snippet ;h "\eta" iA
 \eta
 endsnippet
 
-snippet ;qq "\theta" iA
+snippet ;q "\theta" iA
 \theta
 endsnippet
 
-snippet ;QQ "\Theta" iA
+snippet ;Q "\Theta" iA
 \Theta
 endsnippet
 
-snippet ;ii "\iota" iA
+snippet ;i "\iota" iA
 \iota
 endsnippet
 
-snippet ;kk "\kappa" iA
+snippet ;k "\kappa" iA
 \kappa
 endsnippet
 
-snippet ;ll "\lambda" iA
+snippet ;l "\lambda" iA
 \lambda
 endsnippet
 
-snippet ;LL "\Lambda" iA
+snippet ;L "\Lambda" iA
 \Lambda
 endsnippet
 
-snippet ;mm "\mu" iA
+snippet ;m "\mu" iA
 \mu
 endsnippet
 
-snippet ;nn "\nu" iA
+snippet ;n "\nu" iA
 \nu
 endsnippet
 
-snippet ;pp "\pi" iA
+snippet ;p "\pi" iA
 \pi
 endsnippet
 
-snippet ;PP "\Pi" iA
+snippet ;P "\Pi" iA
 \Pi
 endsnippet
 
-snippet ;rr "\rho" iA
+snippet ;r "\rho" iA
 \rho
 endsnippet
 
-snippet ;ss "\sigma" iA
+snippet ;s "\sigma" iA
 \sigma
 endsnippet
 
-snippet ;SS "\Sigma" iA
+snippet ;S "\Sigma" iA
 \Sigma
 endsnippet
 
-snippet ;tt "\tau" iA
+snippet ;t "\tau" iA
 \tau
 endsnippet
 
-snippet ;ff "\varphi" iA
+snippet ;f "\varphi" iA
 \varphi
 endsnippet
 
-snippet ;FF "\Phi" iA
+snippet ;F "\Phi" iA
 \Phi
 endsnippet
 
-snippet ;ww "\omega" iA
+snippet ;w "\omega" iA
 \omega
 endsnippet
 
-snippet ;WW "\Omega" iA
+snippet ;W "\Omega" iA
 \Omega
 endsnippet
 
-snippet ;xx "\chi" iA
+snippet ;x "\chi" iA
 \chi
 endsnippet
 
@@ -315,22 +338,17 @@ snippet inf "\infty" i
 \infty
 endsnippet
 
-snippet real "\mathbb{R}" i
-\mathbb{R}
+snippet mbb "\mathbb{}" i 
+\mathbb{$1}$0
 endsnippet
 
-snippet cmpl "\mathbb{C}" i
-\mathbb{C}
+snippet mcal "\mathcal{}" i 
+\mathcal{$1}$0
 endsnippet
 
-snippet nats "\mathbb{N}" i
-\mathbb{N}
+snippet frak "\mathfrak{}" i 
+\mathfrak{$1}$0
 endsnippet
 
-snippet intg "\mathbb{Z}" i
-\mathbb{Z}
-endsnippet
 
-snippet rat "\mathbb{Q}" i
-\mathbb{Q}
-endsnippet
+

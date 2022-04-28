@@ -1,0 +1,45 @@
+
+snippet imp "import something" i 
+import ${0:Data.Text}
+endsnippet
+
+snippet lam "generate a lambda function" i
+\\${1:x} -> ${0:x}
+endsnippet 
+
+snippet if "if statement" i 
+if $1 then $2 else $0
+endsnippet
+
+snippet pattern "generate a pattern matching function" i 
+
+    | ${1:condition} = ${2:value}
+    | otherwise	     = ${0:other value}
+endsnippet 
+
+snippet case "Case pattern" i 
+case ${1:something} of 
+    ${2} -> ${0}
+endsnippet 
+
+snippet doc "generate documentation" i 
+{-| ${0}
+ -}
+endsnippet
+
+snippet monad "generate an instance for the monad class" i 
+instance Monad $1 where
+    -- Note: A Monad should satisfy the following rules:
+    -- (return x) >>= f ==== f x
+    -- m >>= return     ==== m
+    -- (m >>= f) >>= g  ==== m >>= (\ x -> f x >>= g)
+
+    $2 >>= f	= $2
+    m >> k      = m >>= \_ -> k 
+    return $3	= $3
+endsnippet
+
+snippet inst "generate an instance of some class" i
+instance ${1:Class} ${2:Type} where
+    ${3:functions to overload}
+endsnippet
