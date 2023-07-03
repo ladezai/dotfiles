@@ -16,22 +16,24 @@ vim.g.maplocalleader = ","
 ---
 
 -- Movement remapping 
-keymap("n","j", "gj",opts)
-keymap("n","k", "gk",opts)
+keymap("n", "j", "gj", opts)
+keymap("n", "k", "gk", opts)
 
 -- When change upper to lower or vice-versa, 
 -- but don't move the cursor
 keymap("n", "~", "~h", opts)
 
 -- Remove highlight after search.
-keymap("n", "<leader><space>", ":noh <CR>", opts)
+--keymap("n", "<leader><space>", ":noh <CR>", opts)
 
 -- Unfold/folding with space bar 
-keymap("n", "<space>", "za", opts)
+--keymap("n", "<space>", "za", opts)
 
 -- Better navigation between buffers
 keymap("n", "<C-j>", ":bnext <CR>", opts)
 keymap("n", "<C-k>", ":bprevious <CR>", opts)
+keymap("n", "<C-l>", ":tabnext <CR>", opts)
+keymap("n", "<C-h>", ":tabprevious <CR>", opts)
 
 
 ---
@@ -40,7 +42,7 @@ keymap("n", "<C-k>", ":bprevious <CR>", opts)
 
 -- Remap esc
 keymap("i", "jk", "<ESC>", opts)
-keymap("i", "<ESC>", "<NOP>", opts)
+--keymap("i", "<ESC>", "<NOP>", opts)
 
 -- Autospell corrector, basically jumps at the previous spell
 -- error, correct with the first result.
@@ -73,25 +75,26 @@ keymap('n','<leader>t', "<cmd>lua require'telescope.builtin'.find_files(require(
 keymap('n','<leader>g', "<cmd>lua require'telescope.builtin'.live_grep(require('telescope.themes').get_dropdown())<CR>", opts)
 
 
--- Keymap to compile LaTeX file and run other kind of programming languages
--- NOTE: Requires neovim >0.9
+-- Keymap to compile LaTeX file and run other kind of programming languages.
+--
 lang_compile_table = {
     ["tex"]    = ":!lualatex --output-directory '%:p:h' '%:p'",
-    ["python"] = ":!python3 '%:p'"
+    ["python"] = ":!python3 '%:p'",
+    ["julia"]  = ":!julia %"
 }
 
 local code_runner = function()
-    local debug = false
+    local debug = true
     if debug then
         print(vim.bo.filetype)
     end
 
-    -- this actually call the function inside lang_compile_table
     local lang = vim.bo.filetype
-    local ok, cmd = pcall(lang_compile_table[lang])
-    -- in case of error print the error
-    if ok then  
-        vim.cmd(cmd)
+    local res = lang_compile_table[lang]
+    if res == nil then 
+        print("Not supported filetype for compilation or execution")
+    else
+        vim.cmd(res)
     end
 end
 

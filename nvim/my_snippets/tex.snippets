@@ -22,9 +22,12 @@ snippet article "Create an exercise sheet for solutions" b
 \theoremstyle{remark}
 \newtheorem{remark}{Remark}
 
-\DeclareMathOperator{\argmax}{argmax}
-\DeclareMathOperator{\argmin}{argmin}
-\DeclareMathOperator{\avg}{\mathbb{E}}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\rank}{rank}
+\DeclareMathOperator*{\var}{Var}
+\DeclareMathOperator*{\avg}{\mathbb{E}}
+\DeclareMathOperator*{\cov}{Cov}
 
 % Title, author and date.
 \title{$1}
@@ -231,6 +234,10 @@ endsnippet
 
 snippet "odv" "ordinary derivative" ri
 \odv{$1}{$2} ${0:${VISUAL}}
+endsnippet
+
+snippet "pvar" "p-variation" ri
+|$1|_{${2:p}-\text{var};[${3:0},${4:T}]}${0:${VISUAL}}
 endsnippet
 
 # Greek letters and other symbols 

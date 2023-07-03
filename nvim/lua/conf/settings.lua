@@ -1,20 +1,34 @@
 ------------------------------- 
 ---       VIM OPTIONS       ---
 -------------------------------
-
+vim.o.encoding = "utf-8"
 vim.o.relativenumber = true
 vim.o.linebreak  = true
 vim.o.textwidth  = 80
 vim.o.showmatch  = true
 vim.o.showcmd    = true
-vim.o.spell      = true
 vim.o.wildmenu   = true
 vim.o.lazyredraw = true
 vim.o.cursorline = true
 vim.o.ttyfast    = true
 
+-- spelling
+vim.opt.spell      = true
+-- the lua way doesn't work so i made this workaround.
+--vim.cmd([[set spelllang="en_gb"]])
+--vim.opt.spellcapcheck= false
+
+-- Changes the time out for commands, not that 
+-- it is particularly useful for exiting insert mode
+-- using jk 
+vim.o.ttimeout   = true
+vim.o.timeout    = true
+vim.o.timeoutlen = 200
+
 -- No backup file
 vim.o.backup = false
+-- autosave when focus is lost/ doesn't seem to work.
+-- vim.o.autowrite = true
 
 -- Allow neovim to access the system clipboard
 vim.o.clipboard = "unnamedplus"
@@ -35,7 +49,7 @@ vim.o.softtabstop = 4
 vim.o.expandtab   = true
 
 -- Fold
-vim.o.foldenable     = false
+vim.o.foldenable     = true
 vim.o.foldlevelstart = 10
 vim.o.foldnestmax    = 5
 vim.wo.foldmethod    = "expr"
@@ -53,12 +67,17 @@ vim.opt.backspace={"indent", "eol", "start"}
 ---
 -- to be sure .tex files are recognized as latex...
 vim.g.tex_flavor = "latex"
+-- remove warning for perl and ruby
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
+
 -- define the path for the python3 executable
---vim.g.python3_host_prog = "/usr/bin/python3"
+vim.g.python3_host_prog = "/opt/homebrew/opt/python3/bin/python3"
 
 -- Tree sitter
 require("nvim-treesitter.configs").setup {
-    ensure_installed = {"python", "latex", "help", "vim", "lua"},
+    ensure_installed = {"python", "latex", "help", "vim", "lua", "julia"},
     sync_install = true,
     highlight = {
         enable = true,
@@ -101,7 +120,7 @@ require("catppuccin").setup({
             base = "#1a1522",
             mantle = "#1a1522",
             crust = "#1a1522",
-        }
+        } 
     },
     custom_highlights = {},
     integrations = {
