@@ -78,9 +78,11 @@ keymap('n','<leader>g', "<cmd>lua require'telescope.builtin'.live_grep(require('
 -- Keymap to compile LaTeX file and run other kind of programming languages.
 --
 lang_compile_table = {
-    ["tex"]    = ":!lualatex --output-directory '%:p:h' '%:p'",
+    ["tex"]    = ":!lualatex -shell-escape --output-directory '%:p:h' '%:p'",
     ["python"] = ":!python3 '%:p'",
-    ["julia"]  = ":!julia %"
+    ["julia"]  = ":!julia %",
+    ["rust"]   = ":!cargo check"
+
 }
 
 local code_runner = function()
@@ -100,3 +102,5 @@ end
 
 vim.keymap.set("n", "<leader>c", code_runner, opts)
 
+-- change theme
+-- vim.keymap.set("n", "<leader>, vim.o.background="light")

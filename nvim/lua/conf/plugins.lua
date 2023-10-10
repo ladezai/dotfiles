@@ -40,6 +40,7 @@ packer.init {
     },
 }
 
+
 -- Install your plugins here
 return packer.startup(function(use)
     -- My plugins here
@@ -63,10 +64,6 @@ return packer.startup(function(use)
         run = ':TSUpdate'
     }
 
-    use {
-        'JuliaEditorSupport/julia-vim'
-    }
-    
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if PACKER_BOOTSTRAP then

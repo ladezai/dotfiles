@@ -132,3 +132,22 @@ require("catppuccin").setup({
 vim.o.termguicolors = true
 vim.cmd.colorscheme("catppuccin")
 
+-- Automatically startup with light / dark mode
+local change_theme = function()
+    -- run the following cmd
+    local cmd = "defaults read -g AppleInterfaceStyle"
+    -- read the output
+    local handle = io.popen(cmd)
+    local val = handle:read("*a")
+    -- check if dark string appears
+    local rrr = string.find(string.lower(val), "dark")
+    -- if dark is found, set to dark, otherwise set to light.
+    if rrr ~= nil then
+        vim.cmd[[:set background=dark]]
+    else 
+        vim.cmd[[:set background=light]]
+    end
+    handle:close()
+end
+
+change_theme()
