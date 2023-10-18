@@ -77,7 +77,7 @@ vim.g.python3_host_prog = "/opt/homebrew/opt/python3/bin/python3"
 
 -- Tree sitter
 require("nvim-treesitter.configs").setup {
-    ensure_installed = {"python", "latex", "help", "vim", "lua", "julia"},
+    ensure_installed = {"python", "latex", "help", "vim", "lua", "rust"},
     sync_install = true,
     highlight = {
         enable = true,
