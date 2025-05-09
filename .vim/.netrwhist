@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/home/gio/.vim/config'
+let g:netrw_dirhist_9='/home/gio/code/pdfassistant/config'
+let g:netrw_dirhist_8='/home/gio/code/pdfassistant/pdfassistant'
+let g:netrw_dirhist_7='/home/gio/code/uncertainty/test_after_training_calibration'
+let g:netrw_dirhist_6='/home/gio/code/dumbformers/src'
+let g:netrw_dirhist_5='/home/gio/code/dumbformers'
+let g:netrw_dirhist_4='/home/gio/papers/example-latex'
+let g:netrw_dirhist_3='/home/gio/.vim/my_snippets'
+let g:netrw_dirhist_2='/home/gio/code/pdfassistant/.git'
+let g:netrw_dirhist_1='/home/gio/.config/wezterm'

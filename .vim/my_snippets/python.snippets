@@ -1,0 +1,29 @@
+
+snippet numpy "Import numpy, linalg and other stuff" i 
+import numpy as np
+import numpy.linalg as la
+import sicpy.sparse as sparse
+import matplotlib.pyplot as plt
+endsnippet 
+
+snippet doc "Generate a documentation like env" i
+"""{$1:Documentation}"""
+endsnippet
+
+snippet def "Generate a function with stuff" i 
+def {$1:foo}($2):
+    {$0}
+ensnippet
+
+snippet class "Generate a class" i 
+class {$1:Object}({$2:Object}):
+    def __init__(self,$3):
+	self.{$0} = {$0}
+endsnippet
+
+snippet method "method" i 
+def $1(self,$2):
+    $0
+endsnippet
+
+
