@@ -4,16 +4,11 @@ HISTSIZE=5000
 SAVEHIST=5000
 
 # Right prompt
-# RPROMPT="%F{255}%K{234}[%D{%f/%m/%y}|%@]"
-#PROMPT="%@|$PS1 "
 PROMPT="%F{green}%@%F{white}|$PS1"
-# Put the prompt 8 lines up from the bottom
-# PS1=$'\n\n\n\n\n\n\n\n\e[8A'"$PS1"
-# 
+
 ### ADDITIONAL COMMANDS
 # Add colors ls using ll and lists all files
 alias ll="ls --color=tty"
-#alias jupyterlab="jupyter lab --app-dir /opt/homebrew/share/jupyter/lab"
 
 ### VARIOUS OPTIONS
 # Add commands to history as they are entered, don't wait for shell to exit
@@ -67,6 +62,3 @@ bindkey '^[[B' history-substring-search-down
 # choose the theme
 #source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-#. "$HOME/.local/bin/env"
-#export PATH=/home/gio/.local/bin/uv:$PATH
