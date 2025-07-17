@@ -4,21 +4,23 @@
 vim.api.nvim_create_autocmd("TextYankPost", {
     pattern = "*",
     callback = function()
-        vim.highlight.on_yank({higroup="IncSearch", timeout=450})
+        vim.highlight.on_yank({higroup="IncSearch", timeout=350})
     end,
     desc = "Highlight yanked lines"
 })
 
+-- Disable copilot for large files
+--vim.api.nvim_create_autocmd("BufReadPre", {
+    --pattern = "*",
+    --callback = function() 
+        --local f=vim.fn.expand("<afile>")
+        --local fsize=vim.fn.getfsize(filename)
 --
--- automatically transform text using cesar cipher. 
--- Probably better to use some kind of flag to enable/disable this.
---
--- let cipher = 0
--- vim.api.nvim_create_autocmd("BufReadPost", {
-    --command = function()
-        --vim.cmd([["+g?]])
+        --if f > 100000 or f == -2 then
+            ---- note: disables copilot only on that buffer
+            --vim.b.copilot_enabled = false
+        --end
     --end,
-    --desc = "auto use Cesar's cipher"
+    --desc = "Disable Copilot for large or special files on BufReadPre"
 --})
 --
-

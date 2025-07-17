@@ -1,6 +1,19 @@
 # template article
 snippet article "Create an exercise sheet for solutions" b
 \documentclass[11pt, a4paper]{article}
+% General typeset & language 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% Layout and bookkeeping
+\usepackage[a4paper]{geometry}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+%\usepackage{enumerate}
+%\usepackage{array}
 
 % most used packages
 \usepackage{amsmath}
@@ -8,19 +21,43 @@ snippet article "Create an exercise sheet for solutions" b
 \usepackage{amsthm}
 \usepackage{mathtools}
 \usepackage{derivative}
+\usepackage{xfrac}
+\usepackage{tikz}
+\usepackage{tikz-cd}
 
-% theorem declarations
+% bibliography with autoref
+\usepackage[
+    backend=biber,
+    style=numeric,
+    maxnames=4]{biblatex}
+\addbibresource{bio.bib}
+\usepackage{csquotes}
+\usepackage{thmtools}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}{Lemma}
-\newtheorem{proposition}{Proposition}
-\newtheorem{exercise}{Exercise}
+\newtheorem{proposition}[theorem]{Proposition}
+%\newcommand{\propositionautorefname}{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+%\newcommand{\lemmaautorefname}{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+%\newcommand{\corollaryautorefname}{Corollary}
 
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}
+\newtheorem{definition}[theorem]{Definition}
+%\newcommand{\definitionautorefname}{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+%\newcommand{\assumptionautorefname}{Assumption}
+\newtheorem{example}[theorem]{Example}
+%\newcommand{\exampleautorefname}{Example}
 
 \theoremstyle{remark}
-\newtheorem{remark}{Remark}
+\newtheorem{remark}[theorem]{Remark}
+%\newcommand{\remarkautorefname}{Remark}
+\newtheorem{notation}[theorem]{Notation}
+%\newcommand{\notationautorefname}{Notation}
 
 \DeclareMathOperator*{\argmax}{argmax}
 \DeclareMathOperator*{\argmin}{argmin}
@@ -28,6 +65,12 @@ snippet article "Create an exercise sheet for solutions" b
 \DeclareMathOperator*{\var}{Var}
 \DeclareMathOperator*{\avg}{\mathbb{E}}
 \DeclareMathOperator*{\cov}{Cov}
+
+% Formatting
+%\setlength{\parskip}{1.4pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\renewcommand{\baselinestretch}{1}
 
 % Title, author and date.
 \title{$1}

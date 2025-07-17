@@ -62,6 +62,27 @@ return packer.startup(function(use)
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
     }
+    -- Copilot 
+    --use {
+        --"github/copilot.vim",
+    --}
+    -- llamacpp inference server autocompletion: 
+    -- run 
+    -- llama-server --fim-qwen-1.5b-default 
+    use {
+        "ggml-org/llama.vim",
+        init = function ()
+            vim.g.llama_config = {
+                n_prefix = 1024,
+                n_suffix = 1024,
+                show_info = false,
+                auto_fim = true,
+                keymap_accept_full = "<C-S>",
+                stop_string = {"\n"}
+            }
+        end,
+    }
+    
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

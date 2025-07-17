@@ -1,5 +1,5 @@
-require "conf.plugins"
-require "conf.settings"
-require "conf.keymaps"
-require "conf.autocmd"
+require('conf.plugins')
+require('conf.settings')
+require('conf.keymaps')
+require('conf.autocmd')
 

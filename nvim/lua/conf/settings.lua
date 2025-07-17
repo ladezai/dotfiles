@@ -4,7 +4,7 @@
 vim.o.encoding = "utf-8"
 vim.o.relativenumber = true
 vim.o.linebreak  = true
-vim.o.textwidth  = 80
+vim.o.textwidth  = 120
 vim.o.showmatch  = true
 vim.o.showcmd    = true
 vim.o.wildmenu   = true
@@ -41,9 +41,9 @@ vim.o.ignorecase = true
 vim.o.smartcase  = true
 
 -- Indentation and tabs
-vim.o.autoindent  = false
+vim.o.smartindent = false
+vim.o.autoindent  = true
 vim.o.shiftwidth  = 4
-vim.o.smartindent = true
 vim.o.smarttab    = true
 vim.o.softtabstop = 4
 vim.o.expandtab   = true
@@ -70,23 +70,45 @@ vim.g.tex_flavor = "latex"
 -- remove warning for perl and ruby
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
-vim.g.loaded_node_provider = 0
+-- vim.g.loaded_node_provider = 0
 
 -- define the path for the python3 executable
-vim.g.python3_host_prog = "/opt/homebrew/opt/python3/bin/python3"
+vim.g.python3_host_prog = "/Library/Developer/CommandLineTools/usr/bin/python3"
 
 -- Tree sitter
 require("nvim-treesitter.configs").setup {
-    ensure_installed = {"python", "latex", "help", "vim", "lua", "rust"},
+    ensure_installed = {"python", "latex", "vim", "rust"},
     sync_install = true,
     highlight = {
         enable = true,
-        additional_vim_regex_highlighting = false
+        additional_vim_regex_highlighting = true
     },
     indent = {
         enable = true,
     }
 }
+-- Copilot
+-- Disable copilot for all filetypes except python, rust and markdown
+vim.g.copilot_enabled = false -- disable till next free trial
+vim.g.copilot_filetypes = {
+    ["*"] = false, -- disable copilot for all filetypes
+    python = true, -- enable copilot for python files
+    rust = true, -- enable copilot for rust files
+    markdown = true, -- enable copilot for markdown files
+}
+vim.api.nvim_create_autocmd('ColorScheme', {
+    pattern = 'solarized',
+    -- group = ...,
+    callback = function()
+        vim.api.nvim_set_hl(0, 'CopilotSuggestion', {
+            fg = '#555555',
+            ctermfg = 8,
+            force = true
+        })
+    end
+})
+-- llama cpp configuration highlight
+vim.api.nvim_set_hl(0, "llama_hl_hint", {bg = "#f8732e", fg="#0000ff", ctermfg=000})
 
 ---
 --- Color scheme

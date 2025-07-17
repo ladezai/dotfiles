@@ -102,5 +102,10 @@ end
 
 vim.keymap.set("n", "<leader>c", code_runner, opts)
 
+local function wordcount()
+    print(tostring(vim.fn.wordcount().words) .. ' words')
+end
+
+vim.keymap.set("n", "<leader>q", wordcount, opts)
 -- change theme
 -- vim.keymap.set("n", "<leader>, vim.o.background="light")
