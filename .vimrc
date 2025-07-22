@@ -13,7 +13,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'machakann/vim-highlightedyank'
 Plug 'dense-analysis/ale'
 Plug 'rust-lang/rust.vim'
-Plug 'gergap/vim-ollama'
+Plug 'ggml-org/llama.vim'
 call plug#end()
 
 " Remap the > to >gv so that the selected selection is preserved
@@ -42,6 +42,10 @@ let g:UltiSnipsJumpForwardTrigger='<TAB>'
 let g:UltiSnipsJumpBackwardTrigger='<C-TAB>'
 " Do not use Ultisnips for LaTeX
 
+" llamacpp stuff: start the server with
+" llama-server --fim-qwen-3b-default
+" let g:llama_config.show_info = v:false
+" let g:llama_config.auto_fim = v:true
 
 " set highlight to 300 ms
 let g:highlightedyank_highlight_duration = 300
@@ -56,8 +60,12 @@ let g:ale_python_ruff_options = '--select=I,E,F,UP,B,SIM --ignore=UP007,UP006,E5
 
 " Set ALE lint and fix behaviour
 let g:ale_python_ruff_use_global = 1
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_insert_leave = 0
+let g:ale_sign_error = '✗'    " Error symbol
+let g:ale_sign_warning = '⚠'  " Warning symbol
+let g:ale_statusline_format = ['✗ %d', '⚠ %d', 'OK']
+let g:ale_lint_delay = 500     " Milliseconds to wait before checking
 
