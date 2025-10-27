@@ -2,7 +2,7 @@
 ---       VIM OPTIONS       ---
 -------------------------------
 vim.o.encoding = "utf-8"
-vim.o.relativenumber = true
+vim.o.relativenumber = false
 vim.o.linebreak  = true
 vim.o.textwidth  = 120
 vim.o.showmatch  = true
@@ -12,7 +12,12 @@ vim.o.lazyredraw = true
 vim.o.cursorline = true
 vim.o.ttyfast    = true
 
+-- use nvim-tree instead
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- spelling
+vim.opt.spelllang = "en_gb"
 vim.opt.spell      = true
 -- the lua way doesn't work so i made this workaround.
 --vim.cmd([[set spelllang="en_gb"]])
@@ -78,37 +83,65 @@ vim.g.python3_host_prog = "/Library/Developer/CommandLineTools/usr/bin/python3"
 -- Tree sitter
 require("nvim-treesitter.configs").setup {
     ensure_installed = {"python", "latex", "vim", "rust"},
-    sync_install = true,
+    sync_install = false,
     highlight = {
         enable = true,
-        additional_vim_regex_highlighting = true
+        -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+        disable = function(lang, buf)
+            local max_filesize = 100 * 1024 -- 100 KB
+            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+            if ok and stats and stats.size > max_filesize then
+                return true
+            end
+        end,
+        additional_vim_regex_highlighting = false,
     },
     indent = {
-        enable = true,
+        enable = false,
     }
 }
--- Copilot
--- Disable copilot for all filetypes except python, rust and markdown
-vim.g.copilot_enabled = false -- disable till next free trial
-vim.g.copilot_filetypes = {
-    ["*"] = false, -- disable copilot for all filetypes
-    python = true, -- enable copilot for python files
-    rust = true, -- enable copilot for rust files
-    markdown = true, -- enable copilot for markdown files
-}
-vim.api.nvim_create_autocmd('ColorScheme', {
-    pattern = 'solarized',
-    -- group = ...,
-    callback = function()
-        vim.api.nvim_set_hl(0, 'CopilotSuggestion', {
-            fg = '#555555',
-            ctermfg = 8,
-            force = true
-        })
-    end
-})
 -- llama cpp configuration highlight
 vim.api.nvim_set_hl(0, "llama_hl_hint", {bg = "#f8732e", fg="#0000ff", ctermfg=000})
+
+-- inlay hints for errors / suggestions
+vim.diagnostic.config({  
+  virtual_text = true,  -- Show errors as virtual text  
+  signs = true,         -- Show signs in gutter  
+  underline = false,     -- Underline errors  
+  update_in_insert = false,  -- Don't update while typing  
+})
+
+-- set up LSPs
+vim.lsp.config('rust_analyzer', {
+    settings = { 
+        ['rust-analyzer'] = {
+            checksOnSave = {
+                command = "clippy",
+            },
+            diagnostics = {
+                enable = true
+            },
+            procMacro = {
+                enable = true
+            },
+            inlayHints = {
+                typeHints = true,
+                parameterHints = true,
+            },
+        },
+    },
+})
+vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('ruff')
+vim.lsp.enable('ty')
+
+-- auto format on save 
+vim.api.nvim_create_autocmd("BufWritePre", {  
+    pattern = {"*.rs", "*.py"},
+    callback = function()  
+        vim.lsp.buf.format()  
+    end,  
+})
 
 ---
 --- Color scheme

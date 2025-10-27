@@ -44,7 +44,6 @@ packer.init {
 return packer.startup(function(use)
     -- My plugins here
     use "wbthomason/packer.nvim" -- Have packer manage itself
-
     -- Autocomplete snippets...
     use "SirVer/ultisnips"
     -- Theme
@@ -53,36 +52,27 @@ return packer.startup(function(use)
         as = "catppuccin" 
     }
 
-    -- Telescope
-    use "nvim-lua/plenary.nvim"
-    use "nvim-telescope/telescope.nvim"
-
     -- Treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
     }
-    -- Copilot 
-    --use {
-        --"github/copilot.vim",
-    --}
-    -- llamacpp inference server autocompletion: 
-    -- run 
-    -- llama-server --fim-qwen-1.5b-default 
     use {
         "ggml-org/llama.vim",
         init = function ()
             vim.g.llama_config = {
                 n_prefix = 1024,
                 n_suffix = 1024,
-                show_info = false,
-                auto_fim = true,
+                show_info = true,
+                auto_fim = false,
                 keymap_accept_full = "<C-S>",
                 stop_string = {"\n"}
             }
         end,
     }
-    
+    use { 'rust-lang/rust.vim' }
+    use { 'neovim/nvim-lspconfig' }
+
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
