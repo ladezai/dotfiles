@@ -52,12 +52,6 @@ return packer.startup(function(use)
         as = "catppuccin" 
     }
 
-    -- Treesitter
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
-        branch = 'main'
-    }
     use {
         "ggml-org/llama.vim",
         init = function ()

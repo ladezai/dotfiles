@@ -80,17 +80,6 @@ vim.g.loaded_ruby_provider = 0
 -- define the path for the python3 executable
 vim.g.python3_host_prog = "/Library/Developer/CommandLineTools/usr/bin/python3"
 
--- Tree sitter
-def_language =  {"python", "markdown", "latex", "vim", "rust", "lua"}
-require("nvim-treesitter").install(def_language)
--- Start the treesitter
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = def_language,
-  callback = function()
-    vim.treesitter.start()
-  end,
-  group = nvimrc_augroup
-})
 -- llama cpp configuration highlight
 vim.api.nvim_set_hl(0, "llama_hl_hint", {bg = "#f8732e", fg="#0000ff", ctermfg=000})
 
