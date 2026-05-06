@@ -31,7 +31,6 @@ end
 
 vim.api.nvim_create_user_command('MarkdownView', markdown_view, {
   desc = 'View markdown file as HTML in browser',
-  -- buffer = true, -- If you want this command to be buffer-local
   nargs = 0,
 })
 

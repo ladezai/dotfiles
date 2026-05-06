@@ -55,7 +55,8 @@ return packer.startup(function(use)
     -- Treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
+        run = ':TSUpdate',
+        branch = 'main'
     }
     use {
         "ggml-org/llama.vim",

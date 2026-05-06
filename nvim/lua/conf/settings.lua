@@ -81,25 +81,16 @@ vim.g.loaded_ruby_provider = 0
 vim.g.python3_host_prog = "/Library/Developer/CommandLineTools/usr/bin/python3"
 
 -- Tree sitter
-require("nvim-treesitter.configs").setup {
-    ensure_installed = {"python", "latex", "vim", "rust"},
-    sync_install = false,
-    highlight = {
-        enable = true,
-        -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-        disable = function(lang, buf)
-            local max_filesize = 100 * 1024 -- 100 KB
-            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-            if ok and stats and stats.size > max_filesize then
-                return true
-            end
-        end,
-        additional_vim_regex_highlighting = false,
-    },
-    indent = {
-        enable = false,
-    }
-}
+def_language =  {"python", "markdown", "latex", "vim", "rust", "lua"}
+require("nvim-treesitter").install(def_language)
+-- Start the treesitter
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = def_language,
+  callback = function()
+    vim.treesitter.start()
+  end,
+  group = nvimrc_augroup
+})
 -- llama cpp configuration highlight
 vim.api.nvim_set_hl(0, "llama_hl_hint", {bg = "#f8732e", fg="#0000ff", ctermfg=000})
 
